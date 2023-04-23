@@ -1,0 +1,23 @@
+.text-wrapper {
+  border: 1px solid red;
+  max-width: 200px;
+  height: 30px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.text-content,
+.text-empty {
+  font-size: 20px;
+  display: inline-block;
+  vertical-align: top;
+}
+.text-content {
+  width: calc(100% - 80px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.text-empty {
+  width: 80px;
+}
