@@ -10,10 +10,18 @@
   </head>
   <body>
     <div class="container">
-      <p class="text-content">
-        This is just a bit of arbitrary text to show hyphenation in actions.
-      </p>
-      <!-- <p class="text-content">备注备注备注备注</p> -->
+      <img
+        srcset="
+          ./assets/pic_large.png  1200w,
+          ./assets/pic_medium.jpg  600w,
+          ./assets/pic_small.png   300w
+        "
+        sizes="(max-width: 440px) 100vw,
+            (max-width: 1000px) 60vw,
+            900px"
+        src="./assets/pic_small.png"
+        class="banner-image"
+      />
     </div>
     <script src="./main.js"></script>
   </body>

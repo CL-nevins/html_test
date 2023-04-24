@@ -1,8 +1,4 @@
-.text-content {
-  padding: 4px 8px;
-  border: 1px solid grey;
-  width: 200px;
-  hyphens: auto;
-  // white-space: nowrap;
-  // overflow-wrap: break-word;
+.banner-image {
+  // width: 200px;
+  aspect-ratio: 2/1;
 }
