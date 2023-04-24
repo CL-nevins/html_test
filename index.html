@@ -10,15 +10,11 @@
   </head>
   <body>
     <div class="container">
-      <img
-        srcset="
-          ./assets/pic_small.png,
-          ./assets/pic_medium.jpg 1.5x,
-          ./assets/pic_large.png  2x
-        "
-        src="./assets/pic_large.png"
-        class="banner-image"
-      />
+      <picture>
+        <source media="(max-width: 600px)" srcset="./assets/pic_medium.jpg" />
+        <source media="(min-width: 601px)" srcset="./assets/pic_large.png" />
+        <img src="./assets/pic_small.png" alt="image" class="banner-image" />
+      </picture>
     </div>
     <script src="./main.js"></script>
   </body>
