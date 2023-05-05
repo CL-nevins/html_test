@@ -1,4 +1,11 @@
 {
+  "files.associations": {
+    "*.js": "javascript",
+    "*.jsx": "javascriptreact",
+    "*.ts": "typescript",
+    "*.tsx": "typescriptreact",
+    "*.css": "css"
+  },
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true,
@@ -23,5 +30,5 @@
     "liveServer.settings.CustomBrowser": "chrome",
     "liveServer.settings.donotShowInfoMsg": true,
     "liveServer.settings.fullReload": true,
-    "liveServer.settings.port": 9922,
+    "liveServer.settings.port": 9923,
 }
