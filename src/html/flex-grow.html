@@ -8,15 +8,17 @@
     <style>
       .container {
         border: 1px solid grey;
-        width: 1600px;
+        width: 900px;
         background-color: #fff;
         height: 300px;
         display: flex;
         gap: 24px;
-        justify-content: flex-end;
+        justify-content: space-between;
       }
       .item {
-        flex: 0 0 246px;
+        padding: 16px;
+        /* 等同于 flex-basis */
+        flex: 0 1 15%;
         transition: all 0.5s ease;
       }
       .item:nth-child(1) {
@@ -32,7 +34,7 @@
         background-color: burlywood;
       }
       .active {
-        flex: 1 0 246px;
+        flex: 0 1 55%;
         transition: all 0.5s ease;
       }
     </style>
@@ -42,10 +44,10 @@
     <p><a href="../../index.html">&lt;回首页</a></p>
     <p>flex grow</p>
     <div class="container">
-      <div class="item" data-index="1" onclick="toggoleItem(this)"></div>
-      <div class="item" data-index="2" onclick="toggoleItem(this)"></div>
-      <div class="item" data-index="3" onclick="toggoleItem(this)"></div>
-      <div class="item" data-index="4" onclick="toggoleItem(this)"></div>
+      <div class="item" data-index="1" onmouseover="toggoleItem(this)"></div>
+      <div class="item" data-index="2" onmouseover="toggoleItem(this)"></div>
+      <div class="item" data-index="3" onmouseover="toggoleItem(this)"></div>
+      <div class="item" data-index="4" onmouseover="toggoleItem(this)"></div>
     </div>
     <script>
       const items = document.querySelectorAll('.item');
