@@ -37,6 +37,22 @@
         flex: 0 1 55%;
         transition: all 0.5s ease;
       }
+
+      .flex-wrapper {
+        width: 1600px;
+        height: 200px;
+        margin-bottom: 48px;
+        background-color: blanchedalmond;
+        display: flex;
+        justify-content: space-between;
+        gap: 24px;
+        flex-direction: column;
+      }
+      .flex-item {
+        background-color: aquamarine;
+        flex-basis: 20%;
+        height: 100%;
+      }
     </style>
     <title>flex grow</title>
   </head>
@@ -48,6 +64,14 @@
       <div class="item" data-index="2" onmouseover="toggoleItem(this)"></div>
       <div class="item" data-index="3" onmouseover="toggoleItem(this)"></div>
       <div class="item" data-index="4" onmouseover="toggoleItem(this)"></div>
+    </div>
+    <h2>flex test</h2>
+    <div class="flex-wrapper">
+      <div class="flex-item"></div>
+      <div class="flex-item"></div>
+      <div class="flex-item"></div>
+      <div class="flex-item"></div>
+      <div class="flex-item"></div>
     </div>
     <script>
       const items = document.querySelectorAll('.item');

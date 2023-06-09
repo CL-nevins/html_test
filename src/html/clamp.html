@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>clamp()</title>
+    <link rel="stylesheet" href="./src/style/common.css" />
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <style>
+      .container {
+        background-color: aquamarine;
+        width: 950px;
+        height: 200px;
+      }
+      .item {
+        width: clamp(100px, 50%, 400px);
+        background-color: antiquewhite;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <p><a href="../../index.html">&lt;回首页</a></p>
+    <p>clamp()的使用</p>
+    <div class="container">
+      <div class="item"></div>
+    </div>
+  </body>
+</html>
