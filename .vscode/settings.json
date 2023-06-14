@@ -30,5 +30,5 @@
     "liveServer.settings.CustomBrowser": "chrome",
     "liveServer.settings.donotShowInfoMsg": true,
     "liveServer.settings.fullReload": true,
-    "liveServer.settings.port": 9923,
+    "liveServer.settings.port": 8899,
 }
