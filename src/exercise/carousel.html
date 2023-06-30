@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>carousel</title>
+    <style>
+      .wrapper {
+        padding: 16px;
+        border: 1px solid lightgray;
+        background-color: #eeeeee;
+        border-radius: 16px;
+        display: flex;
+        flex-direction: row;
+        width: 450px;
+        position: relative;
+      }
+      .previous,
+      .next {
+        flex: 1 1 10%;
+        display: flex;
+        align-items: center;
+      }
+      .arrow {
+        padding: 0;
+        background: #ddd;
+        border-radius: 15px;
+        border: 1px solid gray;
+        font-size: 24px;
+        line-height: 24px;
+        color: #444;
+        display: block;
+      }
+
+      .arrow:focus {
+        outline: none;
+      }
+
+      .arrow:hover {
+        background: #ccc;
+        cursor: pointer;
+      }
+      .carousel-wrapper {
+        flex: 0 0 390px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      ul {
+        height: 130px;
+        width: 1300px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        font-size: 0;
+        position: relative;
+        left: 0px;
+        transition: all 0.5s ease;
+      }
+
+      ul img {
+        width: 130px;
+        height: 130px;
+        display: block; /* removes extra space near images */
+      }
+      ul li {
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body>
+    <p><a href="../../index.html">&lt;回首页</a></p>
+    <a href="https://zh.javascript.info/introduction-browser-events#lun-bo-tu">
+      习题地址
+    </a>
+    <p>一条可以通过点击箭头来滚动图像的图像带。</p>
+    <p>todo:无限循环，动态加载</p>
+    <!-- create your markup and styles -->
+    <div class="wrapper">
+      <div class="previous">
+        <button class="arrow">⇦</button>
+      </div>
+      <div class="carousel-wrapper">
+        <ul>
+          <li><img src="https://en.js.cx/carousel/1.png" /></li>
+          <li><img src="https://en.js.cx/carousel/2.png" /></li>
+          <li><img src="https://en.js.cx/carousel/3.png" /></li>
+          <li><img src="https://en.js.cx/carousel/4.png" /></li>
+          <li><img src="https://en.js.cx/carousel/5.png" /></li>
+          <li><img src="https://en.js.cx/carousel/6.png" /></li>
+          <li><img src="https://en.js.cx/carousel/7.png" /></li>
+          <li><img src="https://en.js.cx/carousel/8.png" /></li>
+          <li><img src="https://en.js.cx/carousel/9.png" /></li>
+          <li><img src="https://en.js.cx/carousel/10.png" /></li>
+        </ul>
+      </div>
+      <div class="next">
+        <button class="arrow">⇨</button>
+      </div>
+    </div>
+
+    <script>
+      // ...your code to make carousel alive!
+
+      const prevBtn = document.querySelector('.previous .arrow');
+      const nextBtn = document.querySelector('.next .arrow');
+      const imgWrapper = document.querySelector('ul');
+      let currentOffsetLeft = 0;
+
+      // 初始化按钮状态
+      nextBtn.setAttribute('disabled', true);
+      nextBtn.style.cursor = 'not-allowed';
+
+      function enableArrows() {
+        prevBtn.removeAttribute('disabled');
+        nextBtn.removeAttribute('disabled');
+        prevBtn.style.cursor = 'pointer';
+        nextBtn.style.cursor = 'pointer';
+      }
+
+      // 左移
+      prevBtn.addEventListener('click', () => {
+        currentOffsetLeft = imgWrapper.offsetLeft;
+        if (currentOffsetLeft > 0) return;
+        else if (currentOffsetLeft > -780) {
+          imgWrapper.style.left = `${currentOffsetLeft - 390}px`;
+          enableArrows();
+        } else {
+          imgWrapper.style.left = '-910px';
+          prevBtn.setAttribute('disabled', true);
+          prevBtn.style.cursor = 'not-allowed';
+          setTimeout(() => {
+            alert('不能再左了');
+          }, 1000);
+        }
+      });
+
+      //   右移
+      nextBtn.addEventListener('click', () => {
+        currentOffsetLeft = imgWrapper.offsetLeft;
+        if (currentOffsetLeft > 0) return;
+        else if (currentOffsetLeft < -390) {
+          imgWrapper.style.left = `${currentOffsetLeft + 390}px`;
+          enableArrows();
+        } else {
+          imgWrapper.style.left = '0px';
+          nextBtn.setAttribute('disabled', true);
+          nextBtn.style.cursor = 'not-allowed';
+          setTimeout(() => {
+            alert('不能再右了');
+          }, 1000);
+        }
+      });
+    </script>
+  </body>
+</html>
