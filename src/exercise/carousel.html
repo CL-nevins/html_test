@@ -57,14 +57,15 @@
         left: 0px;
         transition: all 0.5s ease;
       }
-
-      ul img {
+      ul li {
+        display: inline-block;
+        position: absolute;
+        top: 0;
+      }
+      li img {
         width: 130px;
         height: 130px;
         display: block; /* removes extra space near images */
-      }
-      ul li {
-        display: inline-block;
       }
     </style>
   </head>
@@ -100,23 +101,17 @@
     </div>
 
     <script>
-      // ...your code to make carousel alive!
-
       const prevBtn = document.querySelector('.previous .arrow');
       const nextBtn = document.querySelector('.next .arrow');
       const imgWrapper = document.querySelector('ul');
+      const imgLists = document.querySelectorAll('li');
       let currentOffsetLeft = 0;
 
-      // 初始化按钮状态
-      nextBtn.setAttribute('disabled', true);
-      nextBtn.style.cursor = 'not-allowed';
-
-      function enableArrows() {
-        prevBtn.removeAttribute('disabled');
-        nextBtn.removeAttribute('disabled');
-        prevBtn.style.cursor = 'pointer';
-        nextBtn.style.cursor = 'pointer';
-      }
+      window.addEventListener('load', () => {
+        for (let i = 0; i < imgLists.length; i++) {
+          imgLists[i].style.left = i * 130 + 'px';
+        }
+      });
 
       // 左移
       prevBtn.addEventListener('click', () => {
@@ -124,14 +119,8 @@
         if (currentOffsetLeft > 0) return;
         else if (currentOffsetLeft > -780) {
           imgWrapper.style.left = `${currentOffsetLeft - 390}px`;
-          enableArrows();
         } else {
           imgWrapper.style.left = '-910px';
-          prevBtn.setAttribute('disabled', true);
-          prevBtn.style.cursor = 'not-allowed';
-          setTimeout(() => {
-            alert('不能再左了');
-          }, 1000);
         }
       });
 
@@ -141,14 +130,8 @@
         if (currentOffsetLeft > 0) return;
         else if (currentOffsetLeft < -390) {
           imgWrapper.style.left = `${currentOffsetLeft + 390}px`;
-          enableArrows();
         } else {
           imgWrapper.style.left = '0px';
-          nextBtn.setAttribute('disabled', true);
-          nextBtn.style.cursor = 'not-allowed';
-          setTimeout(() => {
-            alert('不能再右了');
-          }, 1000);
         }
       });
     </script>
