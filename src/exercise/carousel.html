@@ -109,13 +109,35 @@
 
       window.addEventListener('load', () => {
         for (let i = 0; i < imgLists.length; i++) {
-          imgLists[i].style.left = i * 130 + 'px';
+          imgLists[i].style.left = `${i * 130}px`;
         }
       });
+
+      // 怎么做到无限循环
+      // 0,390,780,1170,
 
       // 左移
       prevBtn.addEventListener('click', () => {
         currentOffsetLeft = imgWrapper.offsetLeft;
+        console.log('currentOffsetLeft', currentOffsetLeft);
+        // switch (currentOffsetLeft) {
+        //   case currentOffsetLeft > 0: {
+        //     debugger;
+        //     break;
+        //   }
+        //   case currentOffsetLeft > -780 && currentOffsetLeft <= 0: {
+        //     debugger;
+        //     imgWrapper.style.left = `${currentOffsetLeft - 390}px`;
+        //   }
+        //   case currentOffsetLeft < -780: {
+        //     imgWrapper.style.left = '-910px';
+        //   }
+        //   default: {
+        //     debugger;
+        //     break;
+        //   }
+        // }
+
         if (currentOffsetLeft > 0) return;
         else if (currentOffsetLeft > -780) {
           imgWrapper.style.left = `${currentOffsetLeft - 390}px`;
