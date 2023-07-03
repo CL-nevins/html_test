@@ -55,7 +55,6 @@
         font-size: 0;
         position: relative;
         left: 0px;
-        transition: all 0.5s ease;
       }
       ul li {
         display: inline-block;
@@ -75,7 +74,14 @@
       习题地址
     </a>
     <p>一条可以通过点击箭头来滚动图像的图像带。</p>
-    <p>todo:无限循环，动态加载</p>
+    <p>todo:动态加载</p>
+    <p>
+      当前索引：
+      <span id="showIndex">0</span>
+      <br />
+      当前left值(需重绘后更新):
+      <span id="currentLeftValue">0</span>
+    </p>
     <!-- create your markup and styles -->
     <div class="wrapper">
       <div class="previous">
@@ -92,7 +98,7 @@
           <li><img src="https://en.js.cx/carousel/7.png" /></li>
           <li><img src="https://en.js.cx/carousel/8.png" /></li>
           <li><img src="https://en.js.cx/carousel/9.png" /></li>
-          <li><img src="https://en.js.cx/carousel/10.png" /></li>
+          <!-- <li><img src="https://en.js.cx/carousel/10.png" /></li> -->
         </ul>
       </div>
       <div class="next">
@@ -105,55 +111,54 @@
       const nextBtn = document.querySelector('.next .arrow');
       const imgWrapper = document.querySelector('ul');
       const imgLists = document.querySelectorAll('li');
+      const currentLeftValue = document.querySelector('#currentLeftValue');
       let currentOffsetLeft = 0;
+
+      // 无限循环 → 其实应该用状态机更好做，这里无限循环的处理只是用三个状态来回切；
+      // 状态机的话，状态抽象就不要从 style.left 来考虑，而是要从 index 的角度来考虑，通过取模运算实现循环，但是得给 li> img 重新分下组，分成3组
+
+      // 左移： 0 → -390 → -780 → 0
+      prevBtn.addEventListener('click', () => {
+        currentOffsetLeft = imgWrapper.offsetLeft;
+        currentLeftValue.textContent = currentOffsetLeft;
+
+        // imgWrapper.style.transition = 'all 0.5s ease';
+
+        if (currentOffsetLeft > 0) return;
+        else if (currentOffsetLeft > -780 && currentOffsetLeft <= 0) {
+          imgWrapper.style.left = `${currentOffsetLeft - 390}px`;
+        } else {
+          imgWrapper.style.transition = 'none';
+          imgWrapper.style.left = 0;
+        }
+      });
+
+      // 右移：0 → -780 → -390 → 0
+      nextBtn.addEventListener('click', () => {
+        currentOffsetLeft = imgWrapper.offsetLeft;
+        currentLeftValue.textContent = currentOffsetLeft;
+        if (currentOffsetLeft === 0) {
+          imgWrapper.style.left = '-780px';
+        } else if (currentOffsetLeft < 0) {
+          imgWrapper.style.left = `${currentOffsetLeft + 390}px`;
+        }
+      });
+
+      // index 思路； 不完全的状态机；
+      let currentIndex = 0;
+      const showIndex = document.querySelector('#showIndex');
+      prevBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % 3;
+        showIndex.textContent = currentIndex;
+      });
+      nextBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex + 2) % 3;
+        showIndex.textContent = currentIndex;
+      });
 
       window.addEventListener('load', () => {
         for (let i = 0; i < imgLists.length; i++) {
           imgLists[i].style.left = `${i * 130}px`;
-        }
-      });
-
-      // 怎么做到无限循环
-      // 0,390,780,1170,
-
-      // 左移
-      prevBtn.addEventListener('click', () => {
-        currentOffsetLeft = imgWrapper.offsetLeft;
-        console.log('currentOffsetLeft', currentOffsetLeft);
-        // switch (currentOffsetLeft) {
-        //   case currentOffsetLeft > 0: {
-        //     debugger;
-        //     break;
-        //   }
-        //   case currentOffsetLeft > -780 && currentOffsetLeft <= 0: {
-        //     debugger;
-        //     imgWrapper.style.left = `${currentOffsetLeft - 390}px`;
-        //   }
-        //   case currentOffsetLeft < -780: {
-        //     imgWrapper.style.left = '-910px';
-        //   }
-        //   default: {
-        //     debugger;
-        //     break;
-        //   }
-        // }
-
-        if (currentOffsetLeft > 0) return;
-        else if (currentOffsetLeft > -780) {
-          imgWrapper.style.left = `${currentOffsetLeft - 390}px`;
-        } else {
-          imgWrapper.style.left = '-910px';
-        }
-      });
-
-      //   右移
-      nextBtn.addEventListener('click', () => {
-        currentOffsetLeft = imgWrapper.offsetLeft;
-        if (currentOffsetLeft > 0) return;
-        else if (currentOffsetLeft < -390) {
-          imgWrapper.style.left = `${currentOffsetLeft + 390}px`;
-        } else {
-          imgWrapper.style.left = '0px';
         }
       });
     </script>
