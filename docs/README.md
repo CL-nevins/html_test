@@ -11,3 +11,7 @@ homepage 在 `index.html`里， 页面上有各个 html 文件的导航，都在
 ## 目录结构
 
 尽量把 css、js 都写在一个 html 文件里，这样比较方便验证
+
+## 联系我们
+
+看下这个链接能不能解析，能不能生效： [contact](./about/contact.md)
