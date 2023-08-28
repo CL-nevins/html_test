@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>clip-path 角标</title>
+    <link rel="stylesheet" href="./src/style/common.css" />
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <style>
+      .triagle {
+        width: 300px;
+        height: 120px;
+        border-radius: 8px 8px 8px 0px;
+        position: relative;
+        color: #fff;
+        font-size: 48px;
+        line-height: 120px;
+        text-align: center;
+        /* linear-gradient 是 background-image，不是 background-color */
+        background: linear-gradient(
+            to right bottom,
+            rgba(255, 255, 255, 0.4),
+            transparent
+          )
+          var(--bg, #ea3447);
+        background-blend-mode: soft-light;
+      }
+      .triagle::before {
+        content: '';
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        left: 0;
+        bottom: -30px;
+        background-color: inherit;
+        filter: brightness(0.7);
+        /* 绘制三角形 */
+        clip-path: polygon(0 0, 100% 0, 100% 100%);
+      }
+
+      /* 角标置顶 */
+      .item {
+        width: 300px;
+        height: 120px;
+        margin-top: 64px;
+        border: 1px solid lightgrey;
+      }
+      .pin {
+        width: 60px;
+        height: 60px;
+        background-color: bisque;
+        clip-path: polygon(0 0, 100% 0, 0 100%);
+      }
+
+      .pin div {
+        transform: rotate(-45deg);
+        font-size: 14px;
+        color: blue;
+      }
+    </style>
+  </head>
+  <body>
+    <p><a href="../../index.html">&lt;回首页</a></p>
+    <p>clip-path的使用</p>
+    <div class="container">
+      <div class="triagle">诸天神魔</div>
+    </div>
+
+    <div class="item">
+      <div class="pin">
+        <div>置顶</div>
+      </div>
+    </div>
+  </body>
+</html>

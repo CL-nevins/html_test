@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>渐变</title>
+    <link rel="stylesheet" href="./src/style/common.css" />
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <style>
+      /* discussion 置顶角标实现 */
+      .list-item {
+        margin: 32px;
+        width: 320px;
+        height: 80px;
+      }
+      .list-item-01 {
+        /* 渐变实际就是背景图片 */
+        background-image: linear-gradient(
+          90deg,
+          red 0%,
+          white 30%,
+          blue 70%,
+          aquamarine 100%
+        );
+      }
+      .list-item-02 {
+        height: 16px;
+        background-image: repeating-linear-gradient(
+          -45deg,
+          #57b,
+          #57b 10px,
+          #148 10px,
+          #148 20px
+        );
+        border-radius: 0.3em;
+      }
+      .list-item-03 {
+        background-image: radial-gradient(white, blue);
+      }
+      .list-item-04 {
+        height: 320px;
+        background-image: repeating-radial-gradient(
+          circle,
+          white,
+          midnightblue
+        );
+      }
+      /* 彩虹 */
+      .list-item-05 {
+        height: 320px;
+        background-image: repeating-radial-gradient(
+          circle at 0 0,
+          red 0%,
+          red 15%,
+          orange 15%,
+          orange 30%,
+          yellow 30%,
+          yellow 45%,
+          green 45%,
+          green 60%,
+          blue 60%,
+          blue 75%,
+          indigo 75%,
+          indigo 90%,
+          violet 90%,
+          violet 100%
+        );
+      }
+    </style>
+  </head>
+  <body>
+    <p><a href="../../index.html">&lt;回首页</a></p>
+    <p>渐变</p>
+    <p>渐变实际就是背景图片</p>
+    <div class="list-item list-item-01">
+      <div class="pin"></div>
+    </div>
+    <p>repeating-linear-gradient: 来做 progress 效果</p>
+    <div class="list-item list-item-02"></div>
+    <p>径向渐变 radial-gradient</p>
+    <div class="list-item list-item-03"></div>
+    <div class="list-item list-item-04"></div>
+    <div class="list-item list-item-05"></div>
+  </body>
+</html>

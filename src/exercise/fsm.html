@@ -13,6 +13,11 @@
       状态机用来做轮播的话，想实现左右循环，就不要从 style.left
       的值去考虑，而是要从 index 切换的角度去考虑了，
     </p>
+    <button class="btn-change">changeState</button>
+    <p>
+      当前状态：
+      <span class="current-state"></span>
+    </p>
     <script>
       var fsm = new StateMachine({
         init: 'solid',
@@ -38,6 +43,43 @@
         },
       });
       console.log('current state', fsm.state);
+
+      const btn = document.querySelector('.btn-change');
+      const state = document.querySelector('.current-state');
+      function showState() {
+        state.textContent = fsm.state;
+      }
+      showState();
+      function changeState() {
+        switch (fsm.state) {
+          case 'solid': {
+            fsm.melt();
+            showState();
+            break;
+          }
+          case 'liquid': {
+            fsm.vaporize();
+            showState();
+            break;
+          }
+          case 'gas': {
+            fsm.condense();
+            showState();
+            break;
+          }
+          case 'liquid': {
+            fsm.freeze();
+            showState();
+            break;
+          }
+          default: {
+            console.log('default');
+            break;
+          }
+        }
+      }
+
+      btn.addEventListener('click', () => changeState());
     </script>
   </body>
 </html>
